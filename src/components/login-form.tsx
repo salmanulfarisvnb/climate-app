@@ -5,6 +5,8 @@ import { DevTool } from "@hookform/devtools";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
+import { useUser } from "@/context/userContext";
 import { useNavigate } from "react-router";
 
 interface FormValues {
@@ -16,15 +18,26 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
-  const { register, handleSubmit, control, formState } = useForm<FormValues>();
-  const { errors } = formState;
   const navigate = useNavigate();
 
+  const { setUser, user } = useUser();
+
+  const { register, handleSubmit, control, formState } = useForm<FormValues>();
+
+  const { errors } = formState;
+
   const onSubmit = (data: FormValues) => {
-    const { name, phoneNumber } = data;
-    if (!name || !phoneNumber) return;
-    localStorage.setItem("user", JSON.stringify(data));
-    navigate("/dashboard");
+    const { name } = data;
+    if (!name) {
+      toast.error("Login failed");
+    }
+    if (user) {
+      toast.error("Already logged in please logout first");
+    } else {
+      setUser(name);
+      toast.success("Login successful");
+      navigate("/");
+    }
   };
 
   return (
@@ -53,7 +66,7 @@ export function LoginForm({
                   required
                 />
                 {errors.name && (
-                  <span className="text-red-500 text-sm">
+                  <span className="text-sm text-red-500">
                     {errors.name.message}
                   </span>
                 )}
@@ -71,7 +84,7 @@ export function LoginForm({
                   })}
                 />
                 {errors["phoneNumber"] && (
-                  <span className="text-red-500 text-sm">
+                  <span className="text-sm text-red-500">
                     {errors["phoneNumber"].message}
                   </span>
                 )}
