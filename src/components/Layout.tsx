@@ -9,7 +9,7 @@ const Layout = ({ children }: PropsWithChildren) => {
         {children}
       </main>
       <footer className="p-5 text-center border-t py-7 bg-background/75">
-        <p className="text-sm sm:text-lg sm:font-semibold">
+        <p className="text-sm opacity-80 sm:text-lg sm:font-semibold ">
           Made with Salmanulfaris 🤩
         </p>
       </footer>

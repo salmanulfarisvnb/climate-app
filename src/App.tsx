@@ -14,7 +14,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
           <Layout>
-            <Toaster />
+            <Toaster richColors />
             <Routes>
               <Route path="/login" element={<LoginForm />} />
               <Route element={<ProtectRoute />}>

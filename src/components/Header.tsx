@@ -2,6 +2,7 @@ import { useTheme } from "@/context/theme-provider";
 import { useUser } from "@/context/userContext";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
+import { toast } from "sonner";
 
 const Header = () => {
   const { setTheme, theme } = useTheme();
@@ -12,6 +13,7 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("user");
     setUser("");
+    toast.success("Logout successful! Stay safe. 🔒");
   };
 
   return (
@@ -25,7 +27,9 @@ const Header = () => {
         />
         <div className="flex items-center gap-4">
           {/* searchBar */}
+
           <p className="tracking-tighter capitalize">{user}</p>
+
           <div
             onClick={() => setTheme(isDark ? "light" : "dark")}
             className={` transition-transform duration-500 ${

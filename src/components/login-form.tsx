@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { useUser } from "@/context/userContext";
 import { useNavigate } from "react-router";
+import { motion, MotionProps } from "framer-motion";
 
 interface FormValues {
   name: string;
@@ -17,7 +18,7 @@ interface FormValues {
 export function LoginForm({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+}: React.ComponentPropsWithoutRef<"div"> & MotionProps) {
   const navigate = useNavigate();
 
   const { setUser, user } = useUser();
@@ -35,13 +36,19 @@ export function LoginForm({
       toast.error("Already logged in please logout first");
     } else {
       setUser(name);
-      toast.success("Login successful");
+      toast.success(
+        `Hey ${name.charAt(0).toUpperCase() + name.slice(1)}, you're in! 🎉`
+      );
       navigate("/");
     }
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
       className={cn(
         "flex max-w-[450px] mx-auto flex-col mt-20 gap-6",
         className
@@ -97,6 +104,6 @@ export function LoginForm({
           <DevTool control={control} />
         </CardContent>
       </Card>
-    </div>
+    </motion.div>
   );
 }
