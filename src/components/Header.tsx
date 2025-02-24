@@ -3,6 +3,8 @@ import { useUser } from "@/context/userContext";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
+import { time } from "console";
 
 const Header = () => {
   const { setTheme, theme } = useTheme();
@@ -17,14 +19,21 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 p-3 border-b bg-background/75 supports-[backdrop-filter]:bg-background/60 backdrop-blur">
+    <header className="sticky z-[1000] top-0 p-3 border-b bg-background/75 supports-[backdrop-filter]:bg-background/60 backdrop-blur">
       <div className="flex items-center justify-between">
-        <img
-          src="/logo.png"
-          loading="lazy"
-          alt="weather_logo"
-          className="size-10 sm:size-14"
-        />
+        <motion.div
+          className="perspective-1000"
+          animate={{ rotateY: [0, 180, 260, 360] }}
+          transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
+        >
+          <img
+            src="/logo.png"
+            loading="lazy"
+            alt="weather_logo"
+            className=" size-10 sm:size-14"
+          />
+        </motion.div>
+
         <div className="flex items-center gap-4">
           {/* searchBar */}
 

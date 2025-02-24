@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
+// import { DevTool } from "@hookform/devtools";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,7 +23,7 @@ export function LoginForm({
 
   const { setUser, user } = useUser();
 
-  const { register, handleSubmit, control, formState } = useForm<FormValues>();
+  const { register, handleSubmit, formState } = useForm<FormValues>();
 
   const { errors } = formState;
 
@@ -45,8 +45,8 @@ export function LoginForm({
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ opacity: 0, scale: 0.98 }}
+      animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
       className={cn(
@@ -101,7 +101,7 @@ export function LoginForm({
               </Button>
             </div>
           </form>
-          <DevTool control={control} />
+          {/* <DevTool control={control} /> */}
         </CardContent>
       </Card>
     </motion.div>

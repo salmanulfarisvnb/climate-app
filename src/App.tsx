@@ -7,7 +7,18 @@ import { LoginForm } from "./components/login-form";
 import ProtectRoute from "./util/ProtectRoute";
 import { Toaster } from "./components/ui/sonner";
 import WeatherDashboard from "./pages/WeatherDashboard";
-const queryClient = new QueryClient();
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000, //5m
+      gcTime: 10 * 60 * 1000, //10m
+      retry: false,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
 function App() {
   return (
     <BrowserRouter>
