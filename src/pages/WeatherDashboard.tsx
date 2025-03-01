@@ -4,6 +4,7 @@ import WeatherSkelton from "@/components/loading-skelton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { WeatherDetailsWithSlide } from "@/components/WeatherDetails";
+import { WeatherForecastWithSlide } from "@/components/WeatherForcast";
 import useGeolocation from "@/hooks/use-geolocation";
 import {
   useForecastQuery,
@@ -24,6 +25,8 @@ const WeatherDashboard = () => {
   const currentWeather = useWeatherQuery(coordinates);
   const forecastWeather = useForecastQuery(coordinates);
   const locationWeather = useLocationQuery(coordinates);
+
+  console.log(forecastWeather.data);
 
   const locationState = locationWeather.data?.[0];
 
@@ -118,9 +121,10 @@ const WeatherDashboard = () => {
           />
           <HourlyTemperatureWithSlide data={forecastWeather.data} />
         </div>
-        <div>
+        <div className="grid items-start gap-6 md:grid-cols-2">
           <WeatherDetailsWithSlide data={currentWeather.data} />
-          {/* weather forecast */}
+
+          <WeatherForecastWithSlide data={forecastWeather.data} />
         </div>
       </div>
     </div>

@@ -69,4 +69,5 @@ const WeatherDetails = ({ data }: WeatherDetailsProps) => {
 export default WeatherDetails;
 export const WeatherDetailsWithSlide = WithSlideAnimation(WeatherDetails, {
   delay: 0.9,
+  // className: "min-w-[500px]",
 });

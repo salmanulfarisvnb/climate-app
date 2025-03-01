@@ -2,6 +2,7 @@ import type { GeocodingData, WeatherData } from "@/api/types";
 import { Card, CardContent } from "./ui/card";
 import { ArrowDown, Droplets, Wind } from "lucide-react";
 import { WithSlideAnimation } from "@/hoc/animation";
+import { formatTemp } from "@/util/format-temp";
 
 export interface CurrentWeatherProps {
   data: WeatherData;
@@ -20,9 +21,6 @@ const CurrentWeather = ({ data, locationState }: CurrentWeatherProps) => {
     name,
   } = data;
 
-  const formatTemp = (temp: number) => {
-    return `${Math.round(temp)}°`;
-  };
   return (
     <Card className="w-full h-full">
       <CardContent>
