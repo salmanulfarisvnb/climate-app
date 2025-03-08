@@ -16,8 +16,6 @@ const CurrentWeather = ({ data, locationState }: CurrentWeatherProps) => {
     weather: [weatherCondition],
     main: { feels_like, humidity, temp, temp_max, temp_min },
     wind: { speed },
-    sys: { country },
-
     name,
   } = data;
 
@@ -30,13 +28,15 @@ const CurrentWeather = ({ data, locationState }: CurrentWeatherProps) => {
               <>
                 <div className="p-5">
                   <h1 className="text-2xl font-bold tracking-tighter ">
-                    {name}
+                    {locationState?.name}
                     {locationState?.state && (
                       <span className="ml-2 text-base text-muted-foreground">
                         {`${locationState?.state}`}
                       </span>
                     )}
-                    <p className="text-base text-muted-foreground">{country}</p>
+                    <p className="text-base text-muted-foreground">
+                      {locationState?.country}
+                    </p>
                   </h1>
                 </div>
               </>

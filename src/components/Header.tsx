@@ -4,7 +4,8 @@ import { Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
-import { time } from "console";
+import CitySearch from "./CitySearch";
+import { Link } from "react-router";
 
 const Header = () => {
   const { setTheme, theme } = useTheme();
@@ -26,16 +27,19 @@ const Header = () => {
           animate={{ rotateY: [0, 180, 260, 360] }}
           transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
         >
-          <img
-            src="/logo.png"
-            loading="lazy"
-            alt="weather_logo"
-            className=" size-10 sm:size-14"
-          />
+          <Link to={"/"}>
+            {" "}
+            <img
+              src="/logo.png"
+              loading="lazy"
+              alt="weather_logo"
+              className=" size-10 sm:size-14"
+            />
+          </Link>
         </motion.div>
 
         <div className="flex items-center gap-4">
-          {/* searchBar */}
+          <CitySearch />
 
           <p className="tracking-tighter capitalize">{user}</p>
 

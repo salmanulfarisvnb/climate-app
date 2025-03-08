@@ -49,6 +49,14 @@ class WEATHER_API {
     });
     return this.fetchData<GeocodingData[]>(url);
   }
+
+  async getLocationWeather(query: string): Promise<GeocodingData[]> {
+    const url = this.createUrl(`${API_CONFIG.GEO}/direct`, {
+      q: query,
+      limit: 5,
+    });
+    return this.fetchData<GeocodingData[]>(url);
+  }
 }
 
 export const weatherApi = new WEATHER_API();

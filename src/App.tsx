@@ -7,6 +7,7 @@ import { LoginForm } from "./components/login-form";
 import ProtectRoute from "./util/ProtectRoute";
 import { Toaster } from "./components/ui/sonner";
 import WeatherDashboard from "./pages/WeatherDashboard";
+import CityPage from "./pages/CityPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,7 +31,9 @@ function App() {
               <Route path="/login" element={<LoginForm />} />
               <Route element={<ProtectRoute />}>
                 <Route path="/" element={<WeatherDashboard />} />
+                <Route path="/city-page/:cityName" element={<CityPage />} />
               </Route>
+              <Route path="*" element={<LoginForm />} />
             </Routes>
           </Layout>
         </ThemeProvider>

@@ -6,7 +6,8 @@ const WEATHER_KEY = {
   weather: (coord: Coordinates) => ["weather", coord] as const,
   forecast: (coord: Coordinates) => ["forecast", coord] as const,
   location: (coord: Coordinates) => ["location", coord] as const,
-};
+  locationName: (query: string) => ["location-name", query] as const,
+} as const;
 
 export function useWeatherQuery(coordinates: Coordinates | null) {
   return useQuery({
@@ -32,5 +33,13 @@ export function useLocationQuery(coordinates: Coordinates | null) {
     queryFn: () =>
       coordinates ? weatherApi.getGeocodingWeather(coordinates) : null,
     enabled: !!coordinates,
+  });
+}
+
+export function useLocationNameQuery(query: string) {
+  return useQuery({
+    queryKey: WEATHER_KEY.locationName(query),
+    queryFn: () => weatherApi.getLocationWeather(query),
+    enabled: query.length > 2,
   });
 }

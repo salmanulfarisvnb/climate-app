@@ -7,3 +7,8 @@ export function formatTime(
 
   return format(date, outputFormat);
 }
+
+export function formatDate(date: Date, dateFormat: string = "hh:mm a") {
+  const formattedDate = format(date, dateFormat);
+  return formattedDate;
+}

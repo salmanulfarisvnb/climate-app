@@ -1,4 +1,5 @@
 import { CurrentWeatherWithSlide } from "@/components/CurrentWeather";
+import FavoritesCity from "@/components/FavoritesCity";
 import { HourlyTemperatureWithSlide } from "@/components/HourlyTemperature";
 import WeatherSkelton from "@/components/loading-skelton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -25,8 +26,6 @@ const WeatherDashboard = () => {
   const currentWeather = useWeatherQuery(coordinates);
   const forecastWeather = useForecastQuery(coordinates);
   const locationWeather = useLocationQuery(coordinates);
-
-  console.log(forecastWeather.data);
 
   const locationState = locationWeather.data?.[0];
 
@@ -96,7 +95,7 @@ const WeatherDashboard = () => {
   }
   return (
     <div>
-      {/* favoriteCities */}
+      <FavoritesCity />
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold tracking-tight">My Location</h1>
 
@@ -113,7 +112,7 @@ const WeatherDashboard = () => {
           />
         </Button>
       </div>
-      <div className="grid gap-6">
+      <div className="grid gap-4">
         <div className="flex flex-col gap-3 lg:flex-row">
           <CurrentWeatherWithSlide
             data={currentWeather.data}
@@ -121,7 +120,7 @@ const WeatherDashboard = () => {
           />
           <HourlyTemperatureWithSlide data={forecastWeather.data} />
         </div>
-        <div className="grid items-start gap-6 md:grid-cols-2">
+        <div className="grid items-start gap-4 md:grid-cols-2">
           <WeatherDetailsWithSlide data={currentWeather.data} />
 
           <WeatherForecastWithSlide data={forecastWeather.data} />
